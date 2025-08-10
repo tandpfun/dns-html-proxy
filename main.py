@@ -121,7 +121,7 @@ class HTMLResolver:
         try:
             html = requests.get(url, timeout=5).text
             # Normalize newlines to spaces so dig won't print \010 escapes
-            html = html.replace("\n", " ")
+            html = html.replace("\n", " ").replace("\r", " ").replace("\\", "")
         except Exception as e:
             reply = request.reply()
             reply.add_answer(RR(qname, QTYPE.TXT, rdata=TXT(f"Error: {e}"), ttl=0))
