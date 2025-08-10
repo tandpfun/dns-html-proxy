@@ -1,0 +1,22 @@
+# fly.toml app configuration file generated for dns-html-proxy on 2025-08-09T21:28:45-07:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'dns-html-proxy'
+primary_region = 'sjc'
+
+[[services]]
+  protocol = "udp"
+  internal_port = 53
+  ports = [{ port = 53, handlers = ["dns"] }]
+
+[[services]]
+  protocol = "tcp"
+  internal_port = 53
+  ports = [{ port = 53 }]
+
+[[vm]]
+  memory = '1gb'
+  cpu_kind = 'shared'
+  cpus = 1
