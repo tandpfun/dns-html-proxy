@@ -5,6 +5,7 @@ import time
 import logging
 from collections import deque
 from urllib.parse import unquote, urlparse
+import sys
 
 import requests
 from dnslib import RR, QTYPE, TXT
@@ -22,10 +23,10 @@ PORT = int(os.getenv("DNS_PORT", "53"))
 request_log = {}
 
 logging.basicConfig(
-    filename="dns_proxy_access.log",
     level=logging.INFO,
     format="%(asctime)s %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 
 
